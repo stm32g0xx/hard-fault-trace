@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32G070xx,CMSIS_device_header=&lt;stm32g0xx.h&gt;</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc; ../Drivers/STM32G0xx_HAL_Driver/Inc; ../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy; ../Drivers/CMSIS/Device/ST/STM32G0xx/Include; ../Drivers/CMSIS/Include; ../Middlewares/Third_Party/FreeRTOS/Source/include; ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM0; ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2</IncludePath>
+              <IncludePath>../Core/Inc; ../Drivers/STM32G0xx_HAL_Driver/Inc; ../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy; ../Drivers/CMSIS/Device/ST/STM32G0xx/Include; ../Drivers/CMSIS/Include; ../Middlewares/Third_Party/FreeRTOS/Source/include; ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM0; ../Middlewares/Third_Party/CmBacktrace; ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2; ../Middlewares/Third_Party/CmBacktrace</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1422,6 +1422,21 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Middlewares/CmBacktrace</GroupName>
+          <Files>
+            <File>
+              <FileName>cm_backtrace.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middlewares\Third_Party\CmBacktrace\cm_backtrace.c</FilePath>
+            </File>
+            <File>
+              <FileName>cmb_fault.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\Middlewares\Third_Party\CmBacktrace\fault_handler\keil\cmb_fault.s</FilePath>
             </File>
           </Files>
         </Group>

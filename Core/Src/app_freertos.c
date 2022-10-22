@@ -45,6 +45,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
+static uint32_t times = 0;
 
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
@@ -57,7 +58,25 @@ const osThreadAttr_t defaultTask_attributes = {
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
+void fault_test_by_unalign(void) {
+    volatile int * SCB_CCR = (volatile int *) 0xE000ED14; // SCB->CCR
+    volatile int * p;
+    volatile int value;
 
+    *SCB_CCR |= (1 << 3); /* bit3: UNALIGN_TRP. */
+
+    p = (int *) 0x00;
+    value = *p;
+    printf("addr:0x%02X value:0x%08X\r\n", (int) p, value);
+
+    p = (int *) 0x04;
+    value = *p;
+    printf("addr:0x%02X value:0x%08X\r\n", (int) p, value);
+
+    p = (int *) 0x03;
+    value = *p;
+    printf("addr:0x%02X value:0x%08X\r\n", (int) p, value);
+}
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
@@ -117,6 +136,10 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
+    if (times++ > 10) {
+      fault_test_by_unalign();
+    }
+    
     HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
     osDelay(100);
   }
